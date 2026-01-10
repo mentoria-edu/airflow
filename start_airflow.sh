@@ -15,23 +15,12 @@ else
   echo ".env file already exists, skipping creation"
 fi
 
-if [ -f "$INIT_FLAG" ]; then
-  echo ""
-  echo "Airflow already initialized (flag file found: $INIT_FLAG)"
-  echo "Skipping initialization and starting services..."
-  echo ""
-  docker compose -f ${SCRIPT_DIR}/docker-compose.yaml up -d
-  exit 0
-fi
-
 echo "Initializing Airflow database and creating admin user..."
 docker compose -f ${SCRIPT_DIR}/docker-compose.yaml up airflow-init
 
 if [ $? -eq 0 ]; then
-  touch "$INIT_FLAG"
   echo ""
   echo "Airflow initialization completed successfully!"
-  echo "Flag file created: $INIT_FLAG"
   echo ""
   echo "Starting Airflow services..."
   docker compose -f ${SCRIPT_DIR}/docker-compose.yaml up -d
