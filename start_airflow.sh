@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-INIT_FLAG="${SCRIPT_DIR}/.airflow_initialized"
 
 echo "Creating necessary directories..."
 mkdir -p ${SCRIPT_DIR}/dags ${SCRIPT_DIR}/logs ${SCRIPT_DIR}/plugins ${SCRIPT_DIR}/config
@@ -15,6 +13,7 @@ else
   echo ".env file already exists, skipping creation"
 fi
 
+echo ""
 echo "Initializing Airflow database and creating admin user..."
 docker compose -f ${SCRIPT_DIR}/docker-compose.yaml up airflow-init
 
