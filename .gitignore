@@ -1,0 +1,6 @@
+logs
+/logs
+.env
+.airflow_initialized
+/config
+/venv
