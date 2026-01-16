@@ -7,7 +7,6 @@ mkdir -p ${SCRIPT_DIR}/dags ${SCRIPT_DIR}/logs ${SCRIPT_DIR}/plugins ${SCRIPT_DI
 
 echo "Configuring AIRFLOW_UID..."
 if [ ! -f ${SCRIPT_DIR}/.env ]; then
-  echo -e "AIRFLOW_UID=$(id -u)" > ${SCRIPT_DIR}/.env
   echo ".env file created with AIRFLOW_UID=$(id -u)"
 else
   echo ".env file already exists, skipping creation"
