@@ -4,3 +4,4 @@ logs
 .airflow_initialized
 /config
 /venv
+/ssh
