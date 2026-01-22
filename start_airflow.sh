@@ -15,21 +15,17 @@ fi
 echo ""
 echo "Setting up SSH keys for Airflow..."
 SSH_DIR="${SCRIPT_DIR}/ssh"
-SSH_KEY="${SSH_DIR}/id_rsa_airflow"
+SSH_KEY="${SSH_DIR}/id_ed25519_airflow"
 
 if [ ! -d "${SSH_DIR}" ]; then
-  echo "Creating SSH directory: ${SSH_DIR}"
-  mkdir -p ${SSH_DIR}
-  chmod 700 ${SSH_DIR}
+  echo "Creating SSH directory: ${SSH_DIR}" 
 else
   echo "Directory SSH already exists, skipping creation"
 fi
 
 if [ ! -f "${SSH_KEY}" ]; then
   echo "Generating SSH key pair..."
-  ssh-keygen -t rsa -b 4096 -f ${SSH_KEY} -N ""
-  chmod 600 ${SSH_KEY}
-  chmod 644 ${SSH_KEY}.pub
+  ssh-keygen -t ed25519 -f ${SSH_KEY} -N ""  
   echo "SSH Key Generated Successfully!"
   echo "IMPORTANT: Copy the public key to your client node!!"
 else
